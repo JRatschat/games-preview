@@ -1,0 +1,315 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1c1a;
+  --muted: #6b675f;
+  --rule: #e4e0d8;
+  --link: #8a2f1c;
+  --link-hover: #5e1d10;
+  --suit-red: #c0272d;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161514;
+    --fg: #e9e6df;
+    --muted: #a19c92;
+    --rule: #2f2d2a;
+    --link: #f0a58f;
+    --link-hover: #ffc9b9;
+    --suit-red: #ff7b7b;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 3rem 1rem 4rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1, h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.25rem; margin: 2.5rem 0 0.5rem; }
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
+
+header { margin-bottom: 2rem; }
+.intro { font-size: 1.2rem; color: var(--muted); }
+.intro { margin-bottom: 0.5rem; }
+.jump { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 0.95rem; margin: 0; }
+.jump a { text-decoration: none; }
+.jump a:hover { text-decoration: underline; }
+.crumb { margin-bottom: 1.5rem; font-size: 0.95rem; }
+.crumb a { text-decoration: none; }
+
+.facts {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.needs { font-size: 0.95rem; }
+.needs span {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 0.3em;
+}
+.facts + .needs { margin-top: -0.25rem; }
+
+.games { list-style: none; margin: 0; padding: 0; }
+.game { padding: 1.75rem 0; border-top: 1px solid var(--rule); }
+.game:last-child { border-bottom: 1px solid var(--rule); }
+.game h3 { margin: 0 0 0.4rem; font-size: 1.5rem; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.2; letter-spacing: -0.01em; }
+.game.has-thumb { display: grid; grid-template-columns: 6rem 1fr; gap: 1.25rem; align-items: start; }
+.game-text { min-width: 0; }
+.thumb { display: block; margin-top: 0.2rem; }
+.thumb img { display: block; width: 6rem; height: 6rem; border-radius: 0.75rem; }
+
+h1.logo { margin: 0 0 1rem; line-height: 0; }
+h1.logo img { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
+.game h3 a { color: inherit; text-decoration: none; }
+.game h3 a:hover { color: var(--link); }
+.game p { margin-bottom: 0.5rem; }
+.about { margin-top: 3.5rem; scroll-margin-top: 2rem; }
+#games { margin-top: 2.5rem; }
+.about h2, .section-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.about p { margin-bottom: 0.85rem; }
+.section-intro { color: var(--muted); font-size: 1rem; }
+.others ul { list-style: none; margin: 0; padding: 0; }
+.others li { padding: 0.9rem 0; border-top: 1px solid var(--rule); }
+.others li:last-child { border-bottom: 1px solid var(--rule); }
+.others h3 { margin: 0 0 0.3rem; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+.others h3 a:first-child { color: inherit; }
+.others li p { margin: 0; }
+.others li p + p { margin-top: 0.6rem; }
+
+.links { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 0.95rem; }
+.game .links { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 0.95rem; }
+
+.files { list-style: none; margin: 0; padding: 0; }
+.files li { padding: 0.6rem 0; border-top: 1px solid var(--rule); }
+.files li:last-child { border-bottom: 1px solid var(--rule); }
+.meta, .note { font-size: 0.85rem; color: var(--muted); }
+.meta { margin-left: 0.4rem; white-space: nowrap; }
+
+
+@media (max-width: 30rem) {
+  body { padding-top: 2rem; font-size: 1.0625rem; }
+  h1 { font-size: 1.75rem; }
+  .game.has-thumb { grid-template-columns: 4rem 1fr; gap: 1rem; }
+  .thumb img { width: 4rem; height: 4rem; border-radius: 0.5rem; }
+}
+
+.overview { margin: 0.25rem 0 0.75rem; }
+.drops { display: flex; flex-wrap: wrap; column-gap: 1.5rem; margin: 0.25rem 0 0.75rem; }
+.drops .overview { margin: 0; }
+.drops .overview[open] { flex-basis: 100%; margin-bottom: 0.25rem; }
+header .drops { margin-top: 1rem; }
+.overview summary {
+  cursor: pointer;
+  width: fit-content;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+  color: var(--link);
+}
+.overview summary:hover { color: var(--link-hover); }
+.overview summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+.overview[open] summary { margin-bottom: 0.75rem; }
+.overview p { margin: 0 0 0.75rem; padding-left: 1rem; border-left: 2px solid var(--rule); }
+.overview h3 {
+  margin: 1rem 0 0.4rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.overview summary + h3 { margin-top: 0; }
+
+/* Rules converted from LaTeX */
+/* A game with one set of rules per player count: which one this page shows */
+.editions {
+  margin: 2.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+}
+.editions strong { font-weight: 600; }
+.editions + .toc { margin-top: 1.5rem; }
+@media (min-width: 78rem) { .editions + .toc { margin-top: 0; } }
+.toc { margin: 2.5rem 0 1rem; }
+/* Numbers drawn as counters, not list markers: Safari misplaces list markers
+   inside columns, and a scrolling box clips markers that hang outside it. */
+.toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; columns: 2 14rem; column-gap: 2rem; }
+.toc li { break-inside: avoid; position: relative; padding-left: 2rem; counter-increment: toc; }
+.toc li::before {
+  content: counter(toc) ".";
+  position: absolute;
+  left: 0;
+  width: 1.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.rules h2 { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.rules h3 { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 1.05rem; margin: 1.75rem 0 0.5rem; }
+.rules .header-section-number { color: var(--muted); font-weight: 500; margin-right: 0.35em; }
+.rules ul, .rules ol { padding-left: 1.4rem; margin: 0 0 1rem; }
+.rules li { margin-bottom: 0.4rem; }
+.rules li > p { margin: 0; }
+.rules hr { width: 30%; margin: 1.5rem 0; border: 0; border-top: 1px solid var(--rule); }
+.rules img { max-width: 100%; height: auto; }
+.rules :target { scroll-margin-top: 1rem; }
+/* Each heading links to itself: it looks like a heading, with a # on hover */
+.rules a.self { color: inherit; text-decoration: none; }
+.rules a.self::after {
+  content: "#";
+  margin-left: 0.35em;
+  color: var(--muted);
+  font-weight: 400;
+  opacity: 0;
+}
+.rules a.self:hover::after, .rules a.self:focus-visible::after { opacity: 1; }
+@media (hover: none) { .rules a.self::after { opacity: 0.5; } }
+
+.rules table {
+  display: block;
+  width: fit-content;   /* narrow tables are centred, wide ones fill the column */
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 auto 1.25rem;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+.rules caption {
+  text-align: left;
+  padding-bottom: 0.35rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.rules caption .label { font-weight: 600; color: var(--fg); }
+.rules th, .rules td { padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }
+.rules tr > :first-child { padding-left: 0; }
+.rules tr > :last-child { padding-right: 0; }
+.rules thead th { border-bottom: 1px solid var(--muted); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.rules tbody tr { border-bottom: 1px solid var(--rule); }
+
+.suit { font-style: normal; }
+.suit.red { color: var(--suit-red); }
+.circled {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 0.3em;
+  border: 1px solid currentColor;
+  border-radius: 1em;
+  text-align: center;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* From deep in long rules: up to the contents, or down to the files and links */
+.jump-bar {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  background: var(--bg);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.12);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+.jump-bar a { padding: 0.55rem 0.85rem; text-decoration: none; }
+.jump-bar a + a { border-left: 1px solid var(--rule); }
+.toc, #downloads, #links { scroll-margin-top: 1rem; }
+.toc-more { display: none; }
+
+/* Wide screens: the contents stay in view beside the rules */
+@media (min-width: 78rem) {
+  .toc {
+    position: fixed;
+    top: 3rem;
+    left: calc(50% - 20rem - 17rem);
+    width: 14rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .toc h2 { margin-top: 0; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .toc ol { columns: auto; }
+  .toc li { margin-bottom: 0.35rem; }
+  .toc-more { display: block; margin: 1rem 0 0; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+  .jump-bar { display: none; }
+}
+
+/* End of a game page: feedback and the other games */
+.feedback { margin: 1rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.about + .feedback { margin-top: 1.5rem; }
+.more-games li.has-thumb { display: flex; gap: 0.85rem; align-items: center; }
+.more-games img { flex: none; width: 3rem; height: 3rem; border-radius: 0.5rem; }
+.more-games .note { line-height: 1.45; }
+
+/* Banner on preview builds of pull requests */
+.preview {
+  margin: -1.5rem 0 2rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px dashed var(--link);
+  border-radius: 0.5rem;
+  color: var(--link);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Printing a page: no floating or pinned navigation, no screen-only extras */
+@media print {
+  .jump-bar, .toc-more, .preview, .rules a.self::after { display: none; }
+  .toc { position: static; width: auto; max-height: none; overflow: visible; margin: 2rem 0 1rem; }
+  .toc ol { columns: 2 14rem; }
+  body { max-width: none; padding: 0; }
+}

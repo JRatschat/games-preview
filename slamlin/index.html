@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Slamlin · Jonathan Ratschat</title>
+<meta name="description" content="Slamlin is a point-trick duel for two with handicap offers, hidden second cards, and a three-card lay-off.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://jratschat.github.io/slamlin/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jonathan Ratschat">
+<meta property="og:title" content="Slamlin">
+<meta property="og:description" content="Slamlin is a point-trick duel for two with handicap offers, hidden second cards, and a three-card lay-off.">
+<meta property="og:url" content="https://jratschat.github.io/slamlin/">
+<meta property="og:image" content="https://jratschat.github.io/slamlin/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Slamlin">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%238a2f1c%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2247%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fbfaf7%22%20font-size%3D%2240%22%20font-weight%3D%22800%22%20font-family%3D%22system-ui%2C-apple-system%2CSegoe%20UI%2CRoboto%2CHelvetica%2CArial%2Csans-serif%22%20letter-spacing%3D%22-2%22%3EJR%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css?v=a8a7bbfdea">
+</head>
+<body>
+<p class="preview">Preview of a change, not the live site.</p>
+<header>
+<p class="crumb"><a href="../">← Jonathan Ratschat</a></p>
+<h1 class="logo"><img src="logo.webp" srcset="logo-600.webp 600w, logo.webp 1200w" sizes="(max-width: 40rem) 100vw, 38rem" alt="Slamlin" width="1200" height="302" style="max-width:100%;height:auto"></h1>
+<p class="intro">Slamlin is a point-trick duel for two with handicap offers, hidden second cards, and a three-card lay-off.</p>
+<p class="facts">2 players · 60–90 min · teach in 20 min · version 4.3, updated <time datetime="2026-10-25">25 Oct 2026</time> · 2026</p>
+<p class="needs"><span>You need</span> 32 cards from a standard deck (7 to Ace)</p>
+<p class="links"><a href="../slamlin/slamlin_rules.pdf" data-goatcounter-click="slamlin/rules" target="_blank" rel="noopener">Rules PDF with player reference, game board and print-and-play cards</a> · <a href="../slamlin/slamlin.pcio" download data-goatcounter-click="slamlin/playingcards-io-room">PlayingCards.io file</a></p>
+<div class="drops"><details class="overview designer"><summary>Designer’s note</summary><p>Slamlin is by far my most complex and thinky design. This one took quite some fine-tuning before I felt that it was finished. It’s a 2p trick-taker in which you declare, pick a game type, and try to win as many trick points as possible while the defender has some special powers to stop you.</p><p>It’s meaty, I don’t expect that many people will have the time/energy/opponent to try it out, but the ones that do will be in for an unforgiving yet unique experience. At least that’s my hope.</p></details></div>
+</header>
+<main>
+
+<nav class="toc" id="contents" aria-label="Contents"><h2>Contents</h2><ol><li><a href="#concept">Concept</a></li><li><a href="#setup">Setup</a></li><li><a href="#first-match">First Match</a></li><li><a href="#a-deal-at-a-glance">A Deal at a Glance</a></li><li><a href="#game-types">Game Types</a></li><li><a href="#cards">Cards</a></li><li><a href="#contract">Contract</a></li><li><a href="#auction">Auction</a></li><li><a href="#talon">Talon</a></li><li><a href="#lay-off">Lay-off</a></li><li><a href="#play">Play</a></li><li><a href="#scoring">Scoring</a></li><li><a href="#game-end">Game End</a></li><li><a href="#open-endgame">Open Endgame</a></li><li><a href="#stages">Stages</a></li><li><a href="#tour-match">Tour Match</a></li><li><a href="#stage-match">Stage Match</a></li><li><a href="#design-notes-and-credits">Design Notes and Credits</a></li></ol><p class="toc-more"><a href="#downloads">Downloads</a> · <a href="#links">Links</a></p></nav><article class="rules"><section id="concept" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#concept">Concept</a></h2>
+<p>Slamlin is a point-trick game for two. Players compete to become the <strong>Declarer</strong>, who names the <strong>game type</strong>: a Trump, No-trump, or Nullo game.</p>
+<p>Instead of bidding points, you offer a harder <strong>target</strong> or <strong>handicaps</strong>. Handicaps give your opponent an edge, such as a pick from the talon or a power to use in the tricks. Targets and handicaps are worth <strong>levels</strong>. The more levels you offer, the more the contract is worth, and the more your opponent scores if you fail it. While the cards arrive, the higher offer earns a bonus. If you stay ahead, though, your opponent can pass and leave you to declare. If you win the auction, your opponent becomes the <strong>Defender</strong> and uses your handicaps against you.</p>
+<p>All 32 cards are in play. Once the talon is taken, you know exactly which cards your opponent holds. Two things stay hidden. Before the first trick, both players set aside three cards face down as a <strong>lay-off</strong> for the last three tricks. In the first six tricks, the <strong>double tricks</strong>, both players place their second card face down at the same time. Choosing the lay-off takes careful planning. Since you know each other’s cards, the second cards turn into bluffing and second-guessing.</p>
+<p>Both players score card points, so the Defender plays for points too. If the Defender, or in Nullo the Declarer, captures no more card points than the target allows, the Declarer makes the contract and scores its value. Otherwise, the Defender scores it, and the levels count double.</p>
+<p>After six deals, the player with the higher score wins. For your first match, see <strong>First Match</strong>.</p>
+</section>
+<section id="setup" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#setup">Setup</a></h2>
+<p><strong>Players:</strong> 2.</p>
+<p><strong>Cards:</strong> <strong>32 cards</strong>: 7, 8, 9, 10, J, Q, K, and A in each of the four suits.</p>
+<p><strong>Components:</strong> 6 handicap tokens (Call the Shots, Second Pick, Double Pick, Sorry Not Sorry, Fair Share, Most Wanted) and 4 target tokens (a Schneider and a Schwarz for each player). For the Tour and Stage Match, also 2 vulnerability markers. The last pages have them as cards, plus a game board.</p>
+<p><strong>Scoring:</strong> A score sheet, or poker chips. With chips, put them in the middle as a bank. Each player takes their points from it and keeps them in their score stack.</p>
+<p><strong>Dealer:</strong> Randomly choose the dealer for the first deal. After that, players take turns dealing.</p>
+<p><strong>Board:</strong> Optional. The first dealer is A. Coins mark the deal, the offer totals, the game type, and the stage points.</p>
+<p><strong>Deal:</strong> Deal <strong>10 cards</strong> to each player. Place <strong>4 cards</strong> in the middle as the <strong>talon</strong>, one face up and three face down. The last <strong>8 cards</strong> form the <strong>stock</strong>. Shuffle the six handicap tokens and lay them face down in a <strong>row</strong>. Each player takes their own Schneider and Schwarz.</p>
+<p><strong>Match:</strong> A match is <strong>6 deals</strong>, so each player deals three times.</p>
+</section>
+<section id="first-match" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#first-match">First Match</a></h2>
+<p>Your first match teaches the game in three steps. In deals 1 to 3, leave out <strong>Nullo</strong> and the <strong>Schwarz</strong> tokens.</p>
+<p><strong>Deals 1 and 2</strong> skip the auction and the handicap tokens. Deal the 8 stock cards right away, 4 to each player, so both players have 14 cards. The non-dealer either takes the contract or passes. If they pass, the dealer may take it. If both pass, the same dealer shuffles and deals again, and this redeal does not count as a deal. Whoever takes the contract is the Declarer and plays Simple. Before the talon step, they may add their own Schneider. Then play the deal as usual.</p>
+<p><strong>Deal 3</strong> is your first auction. Do not shuffle the handicap tokens. Instead, the dealer turns up Call the Shots and Second Pick at 10 cards, Sorry Not Sorry and Fair Share at 12 cards, and Most Wanted and Double Pick at 14 cards. The cheaper handicaps then come first.</p>
+<p><strong>From deal 4 on</strong>, play the full game.</p>
+</section>
+<section id="a-deal-at-a-glance" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#a-deal-at-a-glance">A Deal at a Glance</a></h2>
+<p>Each deal follows these steps. The sections below explain each one.</p>
+<ol>
+<li><p><strong>Deal:</strong> 10 cards each. Talon: 1 face up, 3 face down. Stock: 8 cards. Handicap tokens face down in a row.</p></li>
+<li><p><strong>Offer rounds (10 and 12 cards):</strong> Turn up the next two tokens. Lower total first. Add one token or skip. Higher total scores 3. Then 2 more cards each.</p></li>
+<li><p><strong>Final round (14 cards):</strong> Turn up the last two tokens. Lower total first, then alternate. Add tokens until your total is higher than your opponent’s, or pass. A pass ends the auction, and the other player becomes the Declarer.</p></li>
+<li><p><strong>Contract:</strong> The Declarer may still add tokens, then gives their visible handicap tokens to the Defender.</p></li>
+<li><p><strong>Talon:</strong> As the talon handicap says, or First Pick without one. Both players end up with 16 cards. The Declarer names the game type: a trump suit, No-trump, or Nullo.</p></li>
+<li><p><strong>Lay-off:</strong> Both set aside 3 cards face down at the same time.</p></li>
+<li><p><strong>Double tricks (1–6):</strong> Lead, follow, then both second cards face down and revealed together. The Defender leads trick 1.</p></li>
+<li><p><strong>Single tricks (7–10):</strong> One card each. Trick 7: your last card in hand. Then take the lay-off into your hand. Last trick: +2.</p></li>
+<li><p><strong>Scoring:</strong> Card points first. Then the target decides. Made: the Declarer scores 12 + 3 per level. Failed: the Defender scores 12 + 6 per level.</p></li>
+</ol>
+</section>
+<section id="game-types" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#game-types">Game Types</a></h2>
+<p>After the auction, the Declarer names one of three game types (see <strong>Talon</strong>).</p>
+<p><strong>Trump game:</strong> The Declarer names one suit as <strong>trump</strong>. Any trump beats every card of the other suits. In the trump suit, the Jack and the Nine rank highest and are worth 4 and 3 card points. A trump game has 33 card points.</p>
+<p><strong>No-trump:</strong> There is no trump suit. The highest card of the led suit wins each trick. All Jacks and Nines are worth 0. No-trump has 26 card points.</p>
+<p><strong>Nullo:</strong> Played like No-trump, but the goal is reversed. The Declarer wants to capture as few card points as possible, and in scoring, each player scores the card points in their opponent’s pile. Nullo has 26 card points.</p>
+</section>
+<section id="cards" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#cards">Cards</a></h2>
+<p><strong>Rank in the trump suit:</strong> J <span class="math inline">&gt;</span> 9 <span class="math inline">&gt;</span> A <span class="math inline">&gt;</span> 10 <span class="math inline">&gt;</span> K <span class="math inline">&gt;</span> Q <span class="math inline">&gt;</span> 8 <span class="math inline">&gt;</span> 7.</p>
+<p><strong>Rank in all other suits, and in every suit in No-trump and Nullo:</strong> A <span class="math inline">&gt;</span> 10 <span class="math inline">&gt;</span> K <span class="math inline">&gt;</span> Q <span class="math inline">&gt;</span> J <span class="math inline">&gt;</span> 9 <span class="math inline">&gt;</span> 8 <span class="math inline">&gt;</span> 7.</p>
+<p><strong>Card points</strong> are the same in every game type, except that the Jack and Nine of trump only count in a trump game. All other Jacks and Nines are worth 0. Table <a href="#tab:points" data-reference-type="ref" data-reference="tab:points">1</a> lists all card points.</p>
+<div id="tab:points">
+<table>
+<caption><span class="label">Table 1.</span> Card points</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Card</th>
+<th style="text-align: right;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Jack of trump</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nine of trump</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ace</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ten</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">King</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Queen</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;">All other cards</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Last trick</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sum in a trump game</td>
+<td style="text-align: right;">33</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sum in No-trump and Nullo</td>
+<td style="text-align: right;">26</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="contract" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#contract">Contract</a></h2>
+<p>The Declarer plays a <strong>contract</strong>: a target and any handicaps. Its <strong>total</strong> is the sum of their levels, from 0 to 16, and decides its value. Only the target decides whether the contract is made.</p>
+<p><strong>Targets.</strong> The target is what the Declarer must achieve to make the contract. It limits the card points of one player:</p>
+<ul>
+<li><p>In a trump game and in No-trump, it limits the <strong>Defender</strong>. The Declarer wants the Defender to capture as few card points as possible.</p></li>
+<li><p>In Nullo, it limits the <strong>Declarer</strong>. The Declarer wants to capture as few card points as possible themselves.</p></li>
+</ul>
+<p>Table <a href="#tab:targets" data-reference-type="ref" data-reference="tab:targets">2</a> shows the most card points the limited player may capture. In a trump game and in No-trump, the Declarer therefore needs the rest. With Simple in a trump game, that is at least 19 of the 33 card points. If the limited player captures no more, the contract is <strong>made</strong>. If they capture even one card point more, the contract <strong>fails</strong>.</p>
+<p>Captured card points are all card points in a player’s pile after the last trick, including the 2 for the last trick and cards placed there by Fair Share. In Nullo, the target counts the Declarer’s own pile, before the swap in scoring.</p>
+<div id="tab:targets">
+<table>
+<caption><span class="label">Table 2.</span> Targets</caption>
+<tbody>
+<tr>
+<td style="text-align: left;">Target</td>
+<td style="text-align: center;">Levels</td>
+<td style="text-align: center;">Trump</td>
+<td style="text-align: center;">No-trump</td>
+<td style="text-align: center;">Nullo</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span>Defender</span></td>
+<td style="text-align: center;"><span>Defender</span></td>
+<td style="text-align: center;"><span>Declarer</span></td>
+</tr>
+<tr>
+<td style="text-align: left;">Simple</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr>
+<td style="text-align: left;">Schneider</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr>
+<td style="text-align: left;">Schwarz</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Example:</strong> In a trump game with Simple, the Defender may capture at most 14 of the 33 card points. With 14 or fewer, the contract is made. With 15 or more, it fails. In Nullo with Schneider, the Declarer may capture at most 7 of the 26 card points.</p>
+<p><strong>Target tokens.</strong> Simple needs no token. Each player has their own Schneider and Schwarz token, so both players can offer the same target.</p>
+<p><strong>Handicaps.</strong> Handicaps give the Defender an edge. There are six, each a token, listed in Table <a href="#tab:handicaps" data-reference-type="ref" data-reference="tab:handicaps">3</a>. Call the Shots takes effect automatically. Second Pick and Double Pick change the talon step. The other three are <strong>powers</strong>. The Defender may use each power once, in a trick of their choice, and then flip its token.</p>
+<div id="tab:handicaps">
+<table>
+<caption><span class="label">Table 3.</span> Handicaps</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Handicap</th>
+<th style="text-align: center;">Levels</th>
+<th style="text-align: left;">Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="3" style="text-align: left;"><em>Automatic</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Call the Shots</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Before trick 7 and again before trick 8, the Defender decides who leads it.</td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;"><em>Talon</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Second Pick</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">The Declarer names the game type first. Then the Defender decides who gets the face-up talon card. Both players then take face-down talon cards until they have 16 cards.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Double Pick</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">The Declarer names the game type first. Then the Defender turns up one of the face-down talon cards and picks any two of the four talon cards. The Declarer gets the other two.</td>
+</tr>
+<tr>
+<td colspan="3" style="text-align: left;"><em>Powers: used once, then the token is flipped</em></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sorry Not Sorry</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">When playing any card but the first of a trick, the Defender may break suit even though they could follow. They announce it once the card is face up. The card cannot win the trick, even as a trump.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fair Share</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Once all cards of a trick are face up and before it is taken, each player puts their own cards from the trick on their own pile. The winner still leads next and still scores 2 if it is the last trick.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Most Wanted</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Before the Declarer plays any card but the first of a trick, the Defender names a card. If the Declarer holds it in hand and may legally play it now, the Declarer must play it face up. As a second card, it comes before the Defender’s. Otherwise nothing happens, and the power is used.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="auction" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#auction">Auction</a></h2>
+<p>The cards arrive in three steps, and the players build their offers in between. The player who does not pass in the final round becomes the <strong>Declarer</strong>. The other player is the <strong>Defender</strong>.</p>
+<p><strong>Offer.</strong> Your offer is the tokens in front of you: handicap tokens taken from the row, and your own target tokens. Its total is the sum of the levels you can see. With no tokens, you offer Simple for a total of 0. An offer can only grow, and every token you add must raise its total.</p>
+<p><strong>Laying over.</strong> If you add Schwarz while you have Schneider, lay it over Schneider. In the same way, lay Double Pick over Second Pick. The covered token no longer counts, but it stays in your offer. You cannot add Schneider once you have Schwarz, or Second Pick once you have Double Pick.</p>
+<p><strong>Row.</strong> At the start of each round, the dealer turns up the next two tokens of the row: the first two at 10 cards, the next two at 12 cards, and the last two at 14 cards. A face-up token stays available until a player takes it.</p>
+<p><strong>Offer rounds.</strong> After 10 cards and again after 12 cards, play an offer round. The player with the lower total at the start of the round acts first, or the non-dealer if the totals are tied. Each player gets one turn. On your turn, add one token to your offer or skip. The token can be a face-up handicap token or one of your own target tokens. After both turns, the player with the higher total scores an <strong>offer bonus</strong> of <strong>3</strong>. If the totals are tied, no one scores it. Then the dealer deals 2 more cards to each player from the stock.</p>
+<p><strong>Final round.</strong> At 14 cards, play the final round. The player with the lower total acts first, or the non-dealer if the totals are tied. Then the players alternate. On your turn, either raise or pass. To raise, add tokens one at a time until your total is higher than your opponent’s, and stop as soon as it is. If you cannot get higher, you must pass.</p>
+<p>In the final round, a pass ends the auction. The other player becomes the Declarer, and their offer is the contract. If both totals are 0, that player may decline to be the Declarer. Then all tokens go back, and the same dealer shuffles and deals again. This redeal does not count as one of the six deals.</p>
+<p><strong>After the auction.</strong> The Declarer may still add tokens: their own target tokens or face-up handicap tokens from the row. Then they give their visible handicap tokens to the Defender. The tokens in the Defender’s offer, any covered token, and any token left in the row are set aside for this deal. The game type stays secret until the talon step.</p>
+<p><strong>Example:</strong> A deals. At 10 cards, Fair Share and Call the Shots are turned up. B acts first and takes Call the Shots (total 1). A takes Fair Share (2). A has the higher total and scores 3. At 12 cards, Second Pick and Most Wanted are turned up. B has the lower total, acts first, and takes Most Wanted (3). A takes Second Pick (3). The totals are tied, so no one scores. At 14 cards, Sorry Not Sorry and Double Pick are turned up. The totals are still tied, so B acts first as the non-dealer and adds Schneider (7). A passes. B is the Declarer with Schneider, Call the Shots, and Most Wanted, a total of 7. B gives Call the Shots and Most Wanted to A, and A’s tokens are set aside.</p>
+</section>
+<section id="talon" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#talon">Talon</a></h2>
+<p>The talon handicap in the contract decides who picks from the talon. All talon cards go into the players’ hands. No one looks at a face-down talon card before taking it, unless Double Pick turns it up.</p>
+<p><strong>First Pick:</strong> Without a talon handicap, the Declarer decides who gets the face-up talon card. Both players then take face-down talon cards until they have <strong>16 cards</strong>. Finally, the Declarer names the game type.</p>
+<p><strong>Second Pick and Double Pick:</strong> The Declarer names the game type first. Then the Defender picks, as Table <a href="#tab:handicaps" data-reference-type="ref" data-reference="tab:handicaps">3</a> describes.</p>
+</section>
+<section id="lay-off" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#lay-off">Lay-off</a></h2>
+<p>Both players choose <strong>3 cards</strong> from their hand and set them aside face down at the same time. These cards are played in the last three tricks. Each player keeps 13 cards in hand. You may look at your own lay-off at any time.</p>
+</section>
+<section id="play" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#play">Play</a></h2>
+<p><strong>Following suit:</strong> The first card of a trick sets the <strong>led suit</strong>. Every other card played to that trick, including the leader’s own second card, must be of the led suit if the player can. Otherwise, any card may be played.</p>
+<p><strong>Winning a trick:</strong> The highest trump wins. If no trump was played, the highest card of the led suit wins. The winner puts the trick face down on their own pile and leads the next one. No one may look at captured tricks before scoring.</p>
+<p>A deal has <strong>10 tricks</strong>: first six <strong>double tricks</strong>, then four <strong>single tricks</strong>. The Defender leads the first trick.</p>
+<p><strong>Double tricks (1–6).</strong> Each player plays two cards:</p>
+<ol>
+<li><p>The leader plays a card face up.</p></li>
+<li><p>The follower plays a card face up.</p></li>
+<li><p>Both players place a second card face down at the same time, then reveal them.</p></li>
+</ol>
+<p><strong>Example:</strong> Hearts are trump. B leads the King of Spades, and A follows with the Seven of Spades. B still has Spades, so B’s second card must be a Spade. B places the Ace. A has no Spades left and places the Seven of Hearts. Both reveal, and A’s trump wins the trick.</p>
+<p><strong>Single tricks (7–10).</strong> Each player plays one card, leader first. In trick 7, both play their last card in hand. Then both take their lay-off into their hand for tricks 8–10. The winner of the <strong>last trick</strong> scores 2 points for it.</p>
+<p><strong>Revoke:</strong> Breaking suit although you could follow, without Sorry Not Sorry, is a <strong>revoke</strong>. If the Declarer revokes, the contract fails. If the Defender revokes, it is made.</p>
+</section>
+<section id="scoring" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#scoring">Scoring</a></h2>
+<p>Offer bonuses are scored during the auction. At the end of each deal, score in this order:</p>
+<p><strong>1. Card points.</strong> Both players score the card points they captured. In <strong>Nullo</strong>, swap: each player scores the card points in their opponent’s pile.</p>
+<p><strong>Tip:</strong> Count only the smaller pile, plus 2 if that player won the last trick, and subtract it from 33 in a trump game, or from 26 in No-trump and Nullo.</p>
+<p><strong>2. Contract value.</strong> Check the target first. If the Defender, or in Nullo the Declarer, captured no more card points than the target allows, the contract is made. Otherwise it fails. If it is made, the Declarer scores the contract’s value, <strong>12 + 3 per level</strong>. If it fails, the Defender scores <strong>12 + 6 per level</strong>, so the levels count double. Table <a href="#tab:values" data-reference-type="ref" data-reference="tab:values">4</a> lists all values.</p>
+<div id="tab:values">
+<table>
+<caption><span class="label">Table 4.</span> Contract values</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Levels</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Made</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">36</td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr>
+<td style="text-align: left;">Levels</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Made</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">96</td>
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="game-end" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#game-end">Game End</a></h2>
+<p>After six deals, the player with the higher score wins. If the scores are tied, the match is a draw.</p>
+<p>This is the most straightforward scoring and the best one for your first matches. The Stage Match and the Tour Match add a race that makes the right offer depend on the score. The Stage Match fits into the same six deals, and the Tour Match makes for a longer session.</p>
+<hr />
+<p><span><strong>Variants</strong></span> <span><em>Optional rules</em></span></p>
+<hr />
+<p><em>The game above is complete without these rules. Open Endgame works with any match. The Tour Match and the Stage Match each replace the standard match, so choose one of them or neither. Both use the rules in Stages.</em></p>
+</section>
+<section id="open-endgame" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#open-endgame">Open Endgame</a></h2>
+<p>By trick 8, a player who counts cards knows the opponent’s last three cards exactly. To even this out between players who count and players who do not, both players turn their lay-off face up when they take it into their hand after trick 7. If the result of the last three tricks is then obvious, players may agree on it instead of playing them out.</p>
+</section>
+<section id="stages" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#stages">Stages</a></h2>
+<p>The Tour Match and the Stage Match add a race to the scoring. Made contracts also count toward <strong>stages</strong>, and the first player whose made contracts add up to <strong>40</strong> wins a stage.</p>
+<p>The race makes the right offer depend on the score, not only on your hand. A small contract can be enough to finish a stage. Failed contracts earn no stage points. So offering a contract you will probably fail can still pay off if it beats the offer of an opponent who is close to winning a stage.</p>
+<p><strong>Stage points:</strong> When the Declarer makes a contract, its value also counts as <strong>stage points</strong> for them. Card points, failed contracts, and bonuses never count as stage points.</p>
+<p><strong>Winning a stage:</strong> The first player to reach <strong>40</strong> or more stage points wins a stage. Both players’ stage points then reset to zero. A contract of 10 or more levels is worth at least 42, so making it wins a stage on its own.</p>
+<p><strong>Vulnerability:</strong> The Tour Match and the Stage Match each say who is <strong>vulnerable</strong>. A vulnerable player has a vulnerability marker in front of them. If a vulnerable Declarer fails a contract, the Defender scores <strong>12 + 9 per level</strong>. Table <a href="#tab:tourvalues" data-reference-type="ref" data-reference="tab:tourvalues">5</a> lists all values.</p>
+<div id="tab:tourvalues">
+<table>
+<caption><span class="label">Table 5.</span> Contract values with vulnerability</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Levels</th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">2</th>
+<th style="text-align: center;">3</th>
+<th style="text-align: center;">4</th>
+<th style="text-align: center;">5</th>
+<th style="text-align: center;">6</th>
+<th style="text-align: center;">7</th>
+<th style="text-align: center;">8</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Made</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">36</td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">60</td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed, vulnerable</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">75</td>
+<td style="text-align: center;">84</td>
+</tr>
+<tr>
+<td style="text-align: left;">Levels</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Made</td>
+<td style="text-align: center;">39</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">57</td>
+<td style="text-align: center;">60</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed</td>
+<td style="text-align: center;">66</td>
+<td style="text-align: center;">72</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">96</td>
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">108</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Failed, vulnerable</td>
+<td style="text-align: center;">93</td>
+<td style="text-align: center;">102</td>
+<td style="text-align: center;">111</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">129</td>
+<td style="text-align: center;">138</td>
+<td style="text-align: center;">147</td>
+<td style="text-align: center;">156</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Keeping score:</strong> Card points, contract values, and bonuses all count toward each player’s score. Stage points only decide stages, so they are not scored a second time.</p>
+<p>On a score sheet, each player has one column. Write each result on its own line: first any offer bonuses, then the card points, then any contract value. Circle the value of each made contract, since it is also the Declarer’s stage points. Do not circle card points, failed contracts, or bonuses. When a stage is won, draw a line across both columns. Only circled points below the last line count toward the current stage.</p>
+<p>With chips, put chips from made contracts in a separate stage stack. When a stage is won, both players move their stage stack to their score stack.</p>
+</section>
+<section id="tour-match" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#tour-match">Tour Match</a></h2>
+<p>In the Tour Match, the first player to win two stages wins a <strong>tour</strong> and a large bonus. A player who has won a stage in the tour pays more for a failed contract.</p>
+<p>The Tour Match follows Rubber Bridge. A stage is a game in Bridge, and a tour is a rubber.</p>
+<p>Play one or more tours instead of six deals. Players keep taking turns dealing across tours, and everything else stays the same.</p>
+<p><strong>Vulnerability:</strong> A player who has won a stage in the current tour is vulnerable until the tour ends. A player without a stage pays less for a failed contract, so they can offer more boldly. This gives the trailing player a way back.</p>
+<p><strong>Winning a tour:</strong> The first player to win two stages wins the tour and scores a bonus of <strong>100</strong>. If the opponent has also won a stage in this tour, the bonus is <strong>70</strong>. Then a new tour begins, in which no one is vulnerable yet.</p>
+<p><strong>Ending the session:</strong> Agree before you start how many tours to play, or stop after any finished tour. The higher score wins. If the scores are tied, the session is a draw.</p>
+<p><strong>Unfinished tour:</strong> If you have to stop during a tour, each player who has won a stage in it scores <strong>40</strong>. If no stage has been won in it, nothing more is scored.</p>
+<p><strong>Example:</strong> A and B play one tour. Table <a href="#tab:example" data-reference-type="ref" data-reference="tab:example">6</a> shows their score sheet.</p>
+<div id="tab:example">
+<table>
+<caption><span class="label">Table 6.</span> Score sheet of the example tour</caption>
+<thead>
+<tr>
+<th style="text-align: center;">Deal</th>
+<th style="text-align: left;">What happens</th>
+<th style="text-align: center;"><strong>A</strong></th>
+<th style="text-align: center;"><strong>B</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">A scores 6 in offer bonuses. A declares Hearts: Schneider, Second Pick, Call the Shots (6 levels, worth 30). B captures 8, so A makes it.</td>
+<td style="text-align: center;">6<br />25<br /><span class="circled">30</span></td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">A scores 3 in offer bonuses. B declares No-trump: Simple, Second Pick, Sorry Not Sorry (2 levels, worth 18). A captures 10, so B makes it.</td>
+<td style="text-align: center;">3<br />10</td>
+<td style="text-align: center;">16<br /><span class="circled">18</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">A declares Spades: Simple, Second Pick, Most Wanted, Call the Shots (4 levels, worth 24). B captures 12, so A makes it. A’s circled points reach 30 + 24 = 54, so A wins a stage and is now vulnerable. B’s 18 no longer count.</td>
+<td style="text-align: center;">21<br /><span class="circled">24</span></td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">B scores 6 in offer bonuses. B declares Clubs: Schneider, Second Pick, Fair Share (7 levels). A captures 11, so B fails. B is not vulnerable, so A scores 12 + 6 <span class="math inline">×</span> 7 = 54.</td>
+<td style="text-align: center;">11<br />54</td>
+<td style="text-align: center;">6<br />22</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">A declares Nullo: Simple, Second Pick, Call the Shots, Sorry Not Sorry (3 levels). A captures 14, so A fails. In Nullo, each player scores the other’s pile. A is vulnerable, so B scores 12 + 9 <span class="math inline">×</span> 3 = 39.</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">14<br />39</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">A declares Diamonds: Simple, Second Pick, Call the Shots (2 levels, worth 18). B captures 12, so A makes it.</td>
+<td style="text-align: center;">21<br /><span class="circled">18</span></td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: left;">B scores 3 in offer bonuses. A declares Hearts: Simple, Second Pick, Most Wanted, Call the Shots (4 levels, worth 24). B captures 13, so A makes it. A’s circled points reach 18 + 24 = 42, so A wins a second stage and the tour.</td>
+<td style="text-align: center;">20<br /><span class="circled">24</span></td>
+<td style="text-align: center;">3<br />13</td>
+</tr>
+<tr>
+<td style="text-align: center;">Bonus</td>
+<td style="text-align: left;">B has not won a stage in this tour, so A scores 100.</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">Score</td>
+<td style="text-align: left;">They end the session after this tour. A wins.</td>
+<td style="text-align: center;">379</td>
+<td style="text-align: center;">163</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="stage-match" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#stage-match">Stage Match</a></h2>
+<p>The Stage Match has stages but no tours, and it lasts six deals as usual. It follows Chicago, a short form of Bridge. A stage is a game in Bridge.</p>
+<p>Vulnerability follows a fixed schedule, so both players know in advance when the stakes rise. A vulnerable player pays more for a failed contract, but also earns a bigger bonus for winning a stage. Stage points left after the sixth deal score nothing, so late in the match a stage is only worth chasing if it can still be finished.</p>
+<p><strong>Stage bonus:</strong> The player who wins a stage scores a bonus of <strong>40</strong> right away, or <strong>70</strong> if they are vulnerable in that deal. On a score sheet, write it on its own line below the line that ends the stage.</p>
+<p><strong>Vulnerability:</strong> Vulnerability depends only on the deal number, as shown in Table <a href="#tab:sprint" data-reference-type="ref" data-reference="tab:sprint">7</a>. Place the vulnerability markers at the start of each deal.</p>
+<div id="tab:sprint">
+<table>
+<caption><span class="label">Table 7.</span> Vulnerability in the Stage Match</caption>
+<thead>
+<tr>
+<th style="text-align: left;">Deals</th>
+<th style="text-align: left;">Vulnerable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1–2</td>
+<td style="text-align: left;">No one</td>
+</tr>
+<tr>
+<td style="text-align: left;">3–4</td>
+<td style="text-align: left;">The dealer</td>
+</tr>
+<tr>
+<td style="text-align: left;">5–6</td>
+<td style="text-align: left;">Both players</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Match end:</strong> After six deals, the higher score wins. Stage points left over score nothing. If the scores are tied, the match is a draw.</p>
+<hr />
+</section>
+<section id="design-notes-and-credits" class="level1 unnumbered">
+<h2 class="unnumbered"><a class="self" href="#design-notes-and-credits">Design Notes and Credits</a></h2>
+<p>Slamlin is mainly inspired by Sid Sackson’s Slam!, with additional inspiration from Skat, Belote, Ely Culbertson’s Jo-Jotte, Jonathan Kandell’s Ultimo, Urs Hostettler’s Cosmic Eidex, Matthew LaBrake’s Solar Eclipse, and Bridge.</p>
+<p>Special thanks to all playtesters and everyone who helped improve Slamlin, especially Tanja Simic, Matthias Gilch, Bryce Carter, Markus Roßkopf, and freebird.</p>
+<p>I also want to thank Jonathan Kandell, whose content on BoardGameGeek was a big inspiration. I don’t think the game would exist without it.</p>
+<div class="minipage">
+<hr />
+
+<p>CC BY-NC © 2026 Jonathan Ratschat. These rules are licensed under Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0). The Slamlin name and logo are not covered by this license. To view a copy of this license, visit <a href="https://creativecommons.org/licenses/by-nc/4.0/" class="uri" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc/4.0/</a></p>
+</div>
+</section>
+</article><nav class="jump-bar" aria-label="Jump to"><a href="#contents">Contents ↑</a><a href="#downloads">Files &amp; links ↓</a></nav>
+<section id="downloads">
+<h2>Downloads</h2>
+<ul class="files"><li><a href="slamlin_rules.pdf" data-goatcounter-click="slamlin/rules" target="_blank" rel="noopener">Rules</a> <span class="meta">PDF, 791 KB</span></li><li><a href="slamlin.pcio" download data-goatcounter-click="slamlin/playingcards-io-room">PlayingCards.io room</a> <span class="meta">file, 1.5 MB</span><br><span class="note">To play online, go to playingcards.io, click Import and choose this file.</span></li></ul>
+</section>
+<section id="links">
+<h2>Links</h2>
+<ul class="files"><li><a href="https://boardgamegeek.com/blog/16873/blogpost/192401/slamlin-my-first-trick-taking-design" target="_blank" rel="noopener">Designer diary</a></li><li><a href="https://boardgamegeek.com/boardgame/481943/slamlin" target="_blank" rel="noopener">BoardGameGeek</a></li><li><a href="https://github.com/JRatschat/slamlin" target="_blank" rel="noopener">Files on GitHub</a></li></ul>
+</section>
+<p class="feedback">Questions about the rules, spotted a mistake, or want to talk about the design? <a href="https://boardgamegeek.com/geekmail/compose?touser=Ephorus" data-goatcounter-click="slamlin/feedback" target="_blank" rel="noopener">Send me a message on BoardGameGeek</a>.</p>
+<section class="more-games"><h2>More games</h2><ul class="files"><li class="has-thumb"><img src="../jugglin/thumb.webp" width="48" height="48" alt="" loading="lazy"><span><a href="../jugglin/">Jugglin</a><br><span class="note">Jugglin is a standard-deck Tarock game for three or four, where every tarock has a twin and the Pagat beats the Fool.</span></span></li><li class="has-thumb"><img src="../peelin/thumb.webp" width="48" height="48" alt="" loading="lazy"><span><a href="../peelin/">Peelin</a><br><span class="note">Peelin is a shedding duel for two, made for the Trifle deck but playable with a regular one. Stake a card on going out, peel your hand, and free your Queens.</span></span></li><li class="has-thumb"><img src="../dopplin/thumb.webp" width="48" height="48" alt="" loading="lazy"><span><a href="../dopplin/">Dopplin</a><br><span class="note">Dopplin is a two-player climbing and shedding game where players bid contracts and Aces shovel sets.</span></span></li><li class="has-thumb"><img src="../grapplin/thumb.webp" width="48" height="48" alt="" loading="lazy"><span><a href="../grapplin/">Grapplin</a><br><span class="note">Grapplin is a two-player climbing and shedding game where matching combinations grant special actions and jokers reverse rank order.</span></span></li></ul></section>
+</main>
+<script data-goatcounter="https://ephorus.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
