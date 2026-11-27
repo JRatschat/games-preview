@@ -1,0 +1,960 @@
+:root {
+  --bg: #fbfaf7;
+  --fg: #1d1c1a;
+  --muted: #6b675f;
+  --rule: #e4e0d8;
+  --link: #8a2f1c;
+  --link-hover: #5e1d10;
+  --suit-red: #c0272d;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161514;
+    --fg: #e9e6df;
+    --muted: #a19c92;
+    --rule: #2f2d2a;
+    --link: #f0a58f;
+    --link-hover: #ffc9b9;
+    --suit-red: #ff7b7b;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 3rem 1rem 4rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+h1, h2 {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 2.25rem; margin: 0 0 0.5rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.25rem; margin: 2.5rem 0 0.5rem; }
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
+
+header { margin-bottom: 2rem; }
+.intro { font-size: 1.2rem; color: var(--muted); }
+.intro { margin-bottom: 0.5rem; }
+.crumb { margin-bottom: 1.5rem; font-size: 0.95rem; }
+.crumb a { text-decoration: none; }
+
+/* A game whose rules may still change: a small sign by its name */
+.badge {
+  display: inline-block;
+  vertical-align: 0.2em;
+  margin-left: 0.4em;
+  padding: 0.05em 0.5em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font: 600 0.7rem/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--link);
+  white-space: nowrap;
+}
+.experimental {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.experimental .badge { margin: 0 0.35em 0 0; vertical-align: 0.1em; }
+
+
+
+h1.logo { margin: 0 0 1rem; line-height: 0; }
+h1.logo img { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
+.learn-logo { margin: 0 0 1.25rem; line-height: 0; }
+.learn-logo img { display: block; width: 100%; height: auto; border-radius: 0.75rem; }
+.about { margin-top: 3.5rem; scroll-margin-top: 2rem; }
+#games { margin-top: 2.5rem; }
+.about h2, .section-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.about p { margin-bottom: 0.85rem; }
+.section-intro { color: var(--muted); font-size: 1rem; }
+.others ul { list-style: none; margin: 0; padding: 0; }
+.others li { padding: 0.9rem 0; border-top: 1px solid var(--rule); }
+.others li:last-child { border-bottom: 1px solid var(--rule); }
+.others h3 { margin: 0 0 0.3rem; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+.others h3 a:first-child { color: inherit; }
+.others li p { margin: 0; }
+.others li p + p { margin-top: 0.6rem; }
+
+
+@media (max-width: 30rem) {
+  body { padding-top: 2rem; font-size: 1.0625rem; }
+  h1 { font-size: 1.75rem; }
+}
+
+/* Dropdowns (overview, differences, designer's note): small pills that open a tinted panel */
+.drops { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0; }
+.drops .overview[open] { flex-basis: 100%; margin: 0.15rem 0 0.25rem; }
+header .drops { margin-top: 1rem; }
+.overview summary, .more-picks summary {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  cursor: pointer; list-style: none;
+  border: 1px solid var(--rule); border-radius: 999px;
+  background: var(--surface);
+  font: 500 0.82rem/1.3 var(--sans); color: var(--muted);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.overview summary { padding: 0.3rem 0.75rem 0.3rem 0.8rem; }
+.more-picks summary { padding: 0.4rem 0.9rem; font-size: 0.88rem; }
+.overview summary::-webkit-details-marker, .more-picks summary::-webkit-details-marker { display: none; }
+/* A drawn chevron that turns over when open */
+.overview summary::after, .more-picks summary::after {
+  content: ""; width: 0.7rem; height: 0.7rem; margin-left: 0.05rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 0.2s;
+}
+.overview[open] summary::after, .more-picks[open] summary::after { transform: rotate(180deg); }
+.overview summary:hover, .more-picks summary:hover { color: var(--fg); border-color: var(--muted); }
+.overview summary:focus-visible, .more-picks summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.overview[open] summary, .more-picks[open] summary { color: var(--link); background: var(--tint); border-color: transparent; }
+.overview[open] summary { margin-bottom: 0.6rem; }
+.overview .drop-body { padding: 1rem 1.15rem 0.2rem; border-radius: 0.9rem; background: var(--tint); }
+.overview .drop-body p { font-size: 0.98rem; line-height: 1.6; margin: 0 0 0.8rem; }
+.overview .drop-body h3 {
+  margin: 0.25rem 0 0.4rem;
+  font: 600 0.85rem/1.4 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+}
+.overview .drop-body h3 + p { margin-top: 0; }
+.overview .drop-body h3:not(:first-child) { margin-top: 1.4rem; }
+.more-picks { margin-top: 1rem; }
+.more-picks .picks { margin-top: 0.9rem; }
+
+/* Rules converted from LaTeX */
+/* A game with one set of rules per player count: which one this page shows */
+.editions {
+  margin: 2.5rem 0 0;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+}
+.editions strong { font-weight: 600; }
+.editions + .toc { margin-top: 1.5rem; }
+@media (min-width: 78rem) { .editions + .toc { margin-top: 0; } }
+.toc { margin: 2.5rem 0 1rem; }
+/* Numbers drawn as counters, not list markers: Safari misplaces list markers
+   inside columns, and a scrolling box clips markers that hang outside it. */
+.toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; columns: 2 14rem; column-gap: 2rem; }
+.toc li { break-inside: avoid; position: relative; padding-left: 2rem; counter-increment: toc; }
+.toc li::before {
+  content: counter(toc) ".";
+  position: absolute;
+  left: 0;
+  width: 1.5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.rules h2 { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }
+.rules h3 { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-size: 1.05rem; margin: 1.75rem 0 0.5rem; }
+.rules .header-section-number { color: var(--muted); font-weight: 500; margin-right: 0.35em; }
+.rules ul, .rules ol { padding-left: 1.4rem; margin: 0 0 1rem; }
+.rules li { margin-bottom: 0.4rem; }
+.rules li > p { margin: 0; }
+.rules hr { width: 30%; margin: 1.5rem 0; border: 0; border-top: 1px solid var(--rule); }
+.rules img { max-width: 100%; height: auto; }
+.rules :target { scroll-margin-top: 1rem; }
+/* Each heading links to itself: it looks like a heading, with a # on hover */
+.rules a.self { color: inherit; text-decoration: none; }
+.rules a.self::after {
+  content: "#";
+  margin-left: 0.35em;
+  color: var(--muted);
+  font-weight: 400;
+  opacity: 0;
+}
+.rules a.self:hover::after, .rules a.self:focus-visible::after { opacity: 1; }
+@media (hover: none) { .rules a.self::after { opacity: 0.5; } }
+
+.rules table {
+  display: block;
+  width: fit-content;   /* narrow tables are centred, wide ones fill the column */
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 auto 1.25rem;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+.rules caption {
+  text-align: left;
+  padding-bottom: 0.35rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.rules caption .label { font-weight: 600; color: var(--fg); }
+.rules th, .rules td { padding: 0.35rem 0.6rem; text-align: left; vertical-align: top; }
+.rules tr > :first-child { padding-left: 0; }
+.rules tr > :last-child { padding-right: 0; }
+.rules thead th { border-bottom: 1px solid var(--muted); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.rules tbody tr { border-bottom: 1px solid var(--rule); }
+
+.suit { font-style: normal; }
+.suit.red { color: var(--suit-red); }
+.circled {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 0.3em;
+  border: 1px solid currentColor;
+  border-radius: 1em;
+  text-align: center;
+  line-height: 1.45;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* From deep in long rules: up to the contents, or down to the files and links */
+.jump-bar {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  border: 1px solid var(--rule);
+  border-radius: 1.25rem;
+  background: var(--bg);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.12);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  overflow: hidden;
+}
+.jump-bar a { padding: 0.55rem 0.85rem; text-decoration: none; }
+.jump-bar a + a { border-left: 1px solid var(--rule); }
+.toc, #downloads, #links { scroll-margin-top: 1rem; }
+/* The front page: its sections, on every screen size */
+#games { scroll-margin-top: 1.5rem; }
+.toc-more { display: none; }
+
+/* Wide screens: the contents stay in view beside the rules */
+@media (min-width: 78rem) {
+  .toc {
+    position: fixed;
+    top: 3rem;
+    left: calc(50% - 20rem - 17rem);
+    width: 14rem;
+    max-height: calc(100vh - 6rem);
+    overflow-y: auto;
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  .toc h2 { margin-top: 0; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .toc ol { columns: auto; }
+  .toc li { margin-bottom: 0.35rem; }
+  .toc-more { display: block; margin: 1rem 0 0; padding-top: 0.75rem; border-top: 1px solid var(--rule); }
+  .jump-bar:not(.sections) { display: none; }
+}
+
+/* End of a game page: feedback and the other games */
+.feedback { margin: 1rem 0 0; font-size: 0.95rem; color: var(--muted); }
+.about + .feedback { margin-top: 1.5rem; }
+.newsletter + .feedback { margin-top: 0.5rem; }
+form.newsletter { margin: 1.5rem 0 0; padding: 1rem; border: 1px solid var(--rule); border-radius: 0.5rem; font-size: 0.95rem; }
+form.newsletter label { display: block; margin-bottom: 0.6rem; }
+.newsletter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.newsletter-row input { flex: 1 1 12rem; min-width: 0; padding: 0.45rem 0.6rem; font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--muted); border-radius: 0.35rem; }
+.newsletter-row button { padding: 0.45rem 1rem; font: inherit; color: var(--bg); background: var(--link); border: 0; border-radius: 0.35rem; cursor: pointer; }
+.newsletter-row button:hover { background: var(--link-hover); }
+form.newsletter small { display: block; margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+
+/* Foot of every page: the Impressum and privacy link */
+.site-footer { margin: 3rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--rule); font-size: 0.85rem; color: var(--muted); }
+.site-footer a { color: inherit; }
+.legal h3 { margin: 1.25rem 0 0.25rem; font-size: 1rem; }
+
+/* Contents without counters: the steps carry their own numbers */
+.toc.plain li { padding-left: 0; }
+.toc.plain li::before { content: none; }
+
+:root {
+  --card: #fffdf8;
+  --card-ink: #1d1c1a;
+  --card-red: #c0272d;
+  --card-edge: #c9c3b6;
+  --wild: #f3dc9b;
+  --wild-edge: #b48a2c;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --card: #f4f0e6; --card-edge: #8d877c; --wild: #ecd08a; --wild-edge: #d9a943; }
+}
+
+.learn .part {
+  margin: 3.5rem 0 -1.75rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--link);
+}
+.learn .part span { margin-left: 0.4em; color: var(--muted); font-weight: 500; letter-spacing: 0; text-transform: none; font-size: 0.95rem; }
+.learn h2 .step {
+  display: inline-grid;
+  place-items: center;
+  width: 1.75em;
+  height: 1.75em;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  background: var(--fg);
+  color: var(--bg);
+  font-size: 0.85em;
+  font-weight: 700;
+  vertical-align: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+.learn h3 { margin-top: 1.5rem; }
+.learn ol.big { list-style: none; padding: 0; counter-reset: big; }
+.learn ol.big li { position: relative; padding-left: 2.4rem; margin-bottom: 0.7rem; counter-increment: big; }
+.learn ol.big li::before {
+  content: counter(big);
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid var(--muted);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 600 0.85rem/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* "The word": the game's term, introduced after the plain-language idea */
+.learn .word {
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 2px solid var(--link);
+  font-size: 1rem;
+}
+.learn .word b {
+  display: block;
+  font: 600 0.75rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--link);
+}
+.learn .try {
+  padding: 0.75rem 1rem;
+  border: 1px dashed var(--muted);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+.learn .try b { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.learn .small { font-size: 0.95rem; color: var(--muted); }
+
+/* "Check yourself": a question with its answer folded away */
+.learn details.check { margin: 0 0 1rem; padding: 0.6rem 0.9rem; border: 1px solid var(--rule); border-radius: 0.5rem; }
+.learn details.check summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+}
+.learn details.check summary::-webkit-details-marker { display: none; }
+.learn details.check summary::before { content: "+"; display: inline-block; width: 1em; font-weight: 600; color: var(--muted); }
+.learn details.check[open] summary::before { content: "\2212"; }
+.learn details.check summary b { color: var(--link); font-weight: 600; }
+.learn details.check summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+.learn details.check[open] summary { margin-bottom: 0.6rem; }
+.learn details.check > div { padding-left: 1rem; border-left: 2px solid var(--rule); }
+.learn details.check > div > :last-child { margin-bottom: 0; }
+
+/* Folded small rules at the end */
+.learn details.more { border-top: 1px solid var(--rule); padding: 0.6rem 0; }
+.learn details.more:last-of-type { border-bottom: 1px solid var(--rule); margin-bottom: 1.25rem; }
+.learn details.more summary { cursor: pointer; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; font-weight: 600; font-size: 1rem; list-style: none; }
+.learn details.more summary::-webkit-details-marker { display: none; }
+.learn details.more summary::before { content: "+"; display: inline-block; width: 1em; color: var(--muted); }
+.learn details.more[open] summary::before { content: "\2212"; }
+.learn details.more summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+.learn details.more[open] summary { margin-bottom: 0.5rem; }
+.learn details.more p:last-child { margin-bottom: 0.2rem; }
+
+/* Playing cards, drawn with text */
+.cards { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; vertical-align: middle; }
+.card {
+  display: inline-grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 3.2rem;
+  border: 1px solid var(--card-edge);
+  border-radius: 0.3rem;
+  background: var(--card);
+  color: var(--card-ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.14);
+  font: 700 0.95rem/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.card.red { color: var(--card-red); }
+.card { grid-auto-flow: column; justify-content: center; }  /* rank and suit side by side */
+.card .suit { color: inherit; }  /* a card keeps its own ink, also in dark mode */
+.card.wild { background: var(--wild); border-color: var(--wild-edge); }
+.card.wild.red { color: #96191f; }  /* darker red, so it stays readable on the yellow */
+/* Drawn inside the card's edge, so neighbouring highlighted cards don't run into each other */
+.card.new { border-color: var(--link); box-shadow: inset 0 0 0 1px var(--link), 0 1px 2px rgb(0 0 0 / 0.14); }
+.card.out { opacity: 0.75; text-decoration: line-through; text-decoration-thickness: 2px; }
+.card.out.red { color: #8f171c; }
+.card.back { background: repeating-linear-gradient(45deg, #8a2f1c 0 5px, #6e2516 5px 10px); border-color: #5e1d10; }
+.card.sm { width: 1.85rem; height: 2.6rem; font-size: 0.8rem; }
+.card.hl { transform: translateY(-0.45rem); box-shadow: 0 3px 6px rgb(0 0 0 / 0.22); }
+.card.dim { opacity: 0.62; box-shadow: none; }
+.card.gap { background: transparent; border-style: dashed; border-color: var(--muted); box-shadow: none; }
+.cards:has(.hl) { padding-top: 0.45rem; }
+/* A whole hand of up to 13 cards stays on one line on phones */
+.cards.long { flex-wrap: nowrap; gap: 0.2rem; }
+@media (max-width: 30rem) {
+  .cards.long .card { width: 1.45rem; height: 2.2rem; font-size: 0.7rem; border-radius: 0.25rem; }
+}
+.cards.row { margin-bottom: 1rem; }
+.hand { display: flex; flex-wrap: wrap; gap: 0.9rem 1.4rem; align-items: flex-end; margin: 0 0 1rem; }
+.meld { display: grid; gap: 0.3rem; }
+.meld > span:first-child { font: 500 0.8rem/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--muted); }
+.dead .card { border-style: dashed; }
+.stack { position: relative; display: inline-block; width: 2.3rem; height: 3.2rem; margin: 6px 6px 0 0; }
+.stack .card { position: absolute; left: 0; top: 0; }
+.stack .card + .card { left: 3px; top: -3px; }
+.stack .card + .card + .card { left: 6px; top: -6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 0 0 1rem; font: 0.85rem/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--muted); }
+.legend > span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.legend .card { width: 1.6rem; height: 2.2rem; font-size: 0.7rem; }
+/* Tables line up with the text, and each cell's content sits on the row's middle line */
+.learn table { display: table; width: 100%; margin: 0 0 1.25rem; }
+.learn th, .learn td { vertical-align: middle; }
+.learn table .cards { gap: 0.2rem; }
+.learn td.n, .learn th.n { text-align: right; }
+
+.learn .suits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin: 0 0 1rem; padding: 0; list-style: none; }
+.learn .suits li { display: flex; align-items: center; gap: 0.6rem; margin: 0; padding: 0.35rem 0.7rem; border: 1px solid var(--rule); border-radius: 0.5rem; }
+.suits .suit { font-size: 1.6rem; line-height: 1; }
+
+/* The ladder of levels, Ace to past King */
+.ladder { display: grid; grid-template-columns: repeat(14, 1fr); gap: 0.2rem; align-items: end; margin: 0 0 0.3rem; }
+.ladder span {
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 0.25rem;
+  font: 600 0.8rem/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+/* Each rung a little higher than the last */
+.ladder span:nth-child(1) { height: 1.9rem; }
+.ladder span:nth-child(2) { height: 2.1rem; }
+.ladder span:nth-child(3) { height: 2.3rem; }
+.ladder span:nth-child(4) { height: 2.5rem; }
+.ladder span:nth-child(5) { height: 2.7rem; }
+.ladder span:nth-child(6) { height: 2.9rem; }
+.ladder span:nth-child(7) { height: 3.1rem; }
+.ladder span:nth-child(8) { height: 3.3rem; }
+.ladder span:nth-child(9) { height: 3.5rem; }
+.ladder span:nth-child(10) { height: 3.7rem; }
+.ladder span:nth-child(11) { height: 3.9rem; }
+.ladder span:nth-child(12) { height: 4.1rem; }
+.ladder span:nth-child(13) { height: 4.3rem; }
+.ladder span:nth-child(14) { height: 4.5rem; }
+.ladder .start { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.ladder .goal { background: var(--link); color: var(--bg); border-color: var(--link); }
+.ladder-ends { display: flex; justify-content: space-between; gap: 1rem; margin: 0 0 1rem; font: 0.8rem/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--muted); }
+
+/* One turn, as three boxes */
+.turn { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; margin: 0 0 1rem; font: 600 0.95rem/1.3 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.turn span { padding: 0.35rem 0.7rem; border: 1px solid var(--fg); border-radius: 0.4rem; }
+.turn span.maybe { border-style: dashed; border-color: var(--link); color: var(--link); }
+.turn i { font-style: normal; color: var(--muted); }
+
+.procon { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 0.25rem 1.5rem; margin: 0 0 1rem; }
+.procon h3 { margin-top: 0.5rem; }
+
+/* A worked deal, beat by beat */
+.learn .beat { margin: 0; padding: 0.9rem 0 0.4rem; border-top: 1px dashed var(--rule); }
+.learn .beat > b:first-child { display: block; margin-bottom: 0.3rem; font: 600 0.75rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+
+/* A list of named things, such as contracts, each with its description */
+.learn dl { margin: 0 0 1.75rem; }
+.learn dt { margin-top: 0.75rem; font: 600 1rem/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.learn dt:first-child { margin-top: 0; }
+.learn dd { margin: 0.15rem 0 0; padding-left: 1rem; border-left: 2px solid var(--rule); }
+
+.learn-next { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); scroll-margin-top: 1rem; }
+.learn-next h2 { margin-top: 0; }
+
+/* Banner on preview builds of pull requests */
+.preview {
+  margin: -1.5rem 0 2rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px dashed var(--link);
+  border-radius: 0.5rem;
+  color: var(--link);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Printing a page: no floating or pinned navigation, no screen-only extras */
+@media print {
+  .jump-bar, .toc-more, .preview, .rules a.self::after { display: none; }
+  .toc { position: static; width: auto; max-height: none; overflow: visible; margin: 2rem 0 1rem; }
+  .toc ol { columns: 2 14rem; }
+  body { max-width: none; padding: 0; }
+}
+
+/* ==========================================================================
+   The way into a game: cards on the front page, the header of a game's page
+   ========================================================================== */
+:root {
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --tint: rgba(138, 47, 28, 0.075);
+  --tint-strong: rgba(138, 47, 28, 0.13);
+  --surface: #ffffff;
+  --shadow: 0 1px 2px rgba(29, 28, 26, 0.04), 0 4px 16px rgba(29, 28, 26, 0.05);
+  --shadow-hover: 0 2px 4px rgba(29, 28, 26, 0.05), 0 12px 32px rgba(29, 28, 26, 0.09);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tint: rgba(240, 165, 143, 0.09);
+    --tint-strong: rgba(240, 165, 143, 0.16);
+    --surface: #1d1c1a;
+    --shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
+    --shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+}
+svg.i { width: 1em; height: 1em; flex: none; vertical-align: -0.125em; }
+
+/* A small line above a description: the genre */
+.kicker {
+  margin: 0 0 0.35rem;
+  font: 600 0.72rem/1.4 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--link);
+}
+header .kicker { margin-top: 0.25rem; }
+
+/* A game's tagline under its name: a player's thought, in the text face's italic */
+.tagline {
+  margin: 0 0 0.9rem;
+  font-style: italic;
+  font-size: 1.22rem;
+  line-height: 1.35;
+  color: var(--fg);
+}
+header .tagline { margin: -0.15rem 0 1rem; font-size: 1.35rem; }
+
+/* ---- Front page: "New here?" picks ---- */
+.new-here { margin: 0 0 2.75rem; }
+.new-here h3 { font: 600 1.125rem/1.35 var(--sans); margin: 0 0 1rem; }
+.picks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.pick {
+  padding: 1.1rem 1.2rem 1.15rem; border-radius: 1rem;
+  background: var(--surface); box-shadow: var(--shadow); border: 1px solid var(--rule);
+}
+.pick-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+.pick-thumb img { display: block; width: 2.75rem; height: 2.75rem; border-radius: 0.6rem; }
+.pick-name { display: block; font: 650 1.1rem/1.25 var(--sans); color: var(--fg); text-decoration: none; }
+.pick-name:hover { color: var(--link); }
+.pick-head small { display: block; font: 0.8rem/1.35 var(--sans); color: var(--muted); }
+.pick p { margin: 0; font-size: 0.98rem; line-height: 1.55; }
+
+/* ---- Front page: one card per game ---- */
+.game-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+@media (min-width: 62rem) {
+  .picks { grid-template-columns: repeat(3, 1fr); }
+  .game-cards { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+.game-card {
+  position: relative;
+  border: 1px solid var(--rule);
+  border-radius: 1.1rem;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.game-card:hover { box-shadow: var(--shadow-hover); }
+/* The game's wide logo as a small tag at the top of its card */
+.banner { display: block; width: min(15rem, 62%); margin: 1.3rem 1.35rem 0; line-height: 0; border-radius: 0.6rem; overflow: hidden; }
+.banner img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 302; object-fit: cover; }
+.gc-body { padding: 1.15rem 1.35rem 1.25rem; }
+.game-card h3 {
+  margin: 0 0 0.35rem;
+  font: 650 1.45rem/1.2 var(--sans);
+  letter-spacing: -0.015em;
+}
+.game-card h3 a { color: inherit; text-decoration: none; }
+.game-card h3 a:hover { color: var(--link); }
+.gc-summary { margin: 0 0 0.8rem; font-size: 1.02rem; line-height: 1.55; }
+.gc-meta {
+  list-style: none; margin: 0 0 0.35rem; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 0.25rem 1rem;
+  font: 0.88rem/1.5 var(--sans); color: var(--muted);
+}
+.gc-meta li { display: inline-flex; align-items: center; gap: 0.35rem; white-space: nowrap; }
+.gc-meta svg.i { width: 1.05em; height: 1.05em; opacity: 0.85; }
+.gc-needs { margin: 0; font: 0.88rem/1.5 var(--sans); color: var(--muted); }
+.gc-needs span { font-weight: 600; margin-right: 0.25em; color: var(--fg); opacity: 0.75; }
+.game-card .drops { margin-top: 0.9rem; padding-top: 0.85rem; border-top: 1px solid var(--rule); }
+
+.door > svg.i { transition: transform 0.15s; }
+.door:focus-visible, .chips a:focus-visible, .mini:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* ---- A game's page: the facts as a small table ---- */
+.stats {
+  display: flex; flex-wrap: wrap;
+  margin: 1.5rem 0 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+}
+.stats div { padding: 0.7rem 1.1rem 0.75rem 0; margin-right: 1.1rem; border-right: 1px solid var(--rule); }
+.stats div:last-child { border-right: 0; margin-right: 0; }
+.stats .need { flex: 1 1 12rem; }
+.stats dt { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+.stats dd { margin: 0.1rem 0 0; font-size: 1rem; font-weight: 500; line-height: 1.35; }
+@media (max-width: 34rem) {
+  .stats .need { flex-basis: 100%; border-top: 1px solid var(--rule); margin-right: 0; }
+  .stats div:nth-last-child(2) { border-right: 0; margin-right: 0; }
+}
+
+/* ---- A game's page: the main ways in ---- */
+.doors { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1.5rem 0 1.4rem; }
+@media (min-width: 34rem) { .doors:has(.door + .door) { grid-template-columns: 1.2fr 1fr; } }
+.door {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--rule); border-radius: 1rem;
+  background: var(--surface);
+  color: var(--fg); text-decoration: none;
+  font-family: var(--sans);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+.door:hover { color: var(--fg); text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow-hover); }
+.door.main { background: var(--tint); border-color: transparent; box-shadow: none; }
+.door.main:hover { background: var(--tint-strong); }
+.door-ico {
+  display: grid; place-items: center; width: 2.6rem; height: 2.6rem;
+  border-radius: 0.75rem; background: var(--bg); color: var(--link);
+  box-shadow: 0 0 0 1px var(--rule);
+}
+.door.main .door-ico { box-shadow: none; }
+.door-ico svg.i { width: 1.35rem; height: 1.35rem; }
+.door b { display: block; font-size: 1.05rem; font-weight: 650; color: var(--link); line-height: 1.3; }
+.door small { display: block; font-size: 0.86rem; line-height: 1.35; color: var(--muted); margin-top: 0.1rem; }
+.door > svg.i { color: var(--link); width: 1.1rem; height: 1.1rem; }
+.door:hover > svg.i { transform: translateX(3px); }
+
+/* ---- A game's page: files as tags ---- */
+.mini-label {
+  margin: 0 0 0.55rem;
+  font: 600 0.7rem/1 var(--sans); letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; font-family: var(--sans); }
+.chips a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.35rem 0.8rem 0.35rem 0.4rem;
+  border: 1px solid var(--rule); border-radius: 999px;
+  font-size: 0.88rem; font-weight: 500; line-height: 1.4;
+  color: var(--fg); text-decoration: none; background: var(--surface);
+}
+.chips a:hover { border-color: var(--link); color: var(--link); text-decoration: none; }
+.chips .tag {
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.12rem 0.45rem; border-radius: 999px; background: var(--tint); color: var(--link);
+}
+.chips-note { margin: 0.55rem 0 0; font: 0.82rem/1.45 var(--sans); color: var(--muted); }
+.version { margin: 1.1rem 0 0; font: 0.82rem/1.4 var(--sans); color: var(--muted); }
+header .drops + .version { margin-top: 0.6rem; }
+
+/* ---- End of a game's page: the other games as small cards ---- */
+.minis { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.6rem; }
+.mini {
+  display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.6rem 0.75rem; border: 1px solid var(--rule); border-radius: 0.85rem;
+  background: var(--surface); color: var(--fg); text-decoration: none; font-family: var(--sans);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.mini:hover { color: var(--fg); text-decoration: none; box-shadow: var(--shadow-hover); }
+.mini img { flex: none; width: 2.75rem; height: 2.75rem; border-radius: 0.55rem; }
+.mini b { display: block; font-weight: 600; font-size: 1rem; line-height: 1.3; }
+.mini small { display: block; font-size: 0.8rem; color: var(--muted); line-height: 1.35; }
+
+@media (prefers-reduced-motion: reduce) {
+  .game-card, .door, .door > svg.i, .mini, .overview summary::after, .more-picks summary::after { transition: none; }
+  .door:hover { transform: none; }
+}
+
+/* ==========================================================================
+   The same language across the rest of the site
+   ========================================================================== */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- Front page: the top ---- */
+.hero { margin-bottom: 3rem; }
+.hero h1 { font-size: clamp(2.25rem, 6vw, 3rem); letter-spacing: -0.03em; margin-bottom: 0.6rem; }
+.hero .intro { font-size: 1.25rem; line-height: 1.55; max-width: 34rem; }
+.game-card { scroll-margin-top: 1.5rem; }
+
+/* ---- Section headings: one size, one voice ---- */
+.about h2, .section-label, .more-games h2, #downloads h2, #links h2, .learn-next h2 {
+  margin: 0 0 1rem;
+  font: 650 1.55rem/1.2 var(--sans);
+  letter-spacing: -0.015em;
+  text-transform: none;
+  color: var(--fg);
+}
+#games, .about { margin-top: 4rem; }
+#games { margin-top: 0; }
+.section-intro { margin: -0.5rem 0 1.25rem; font-size: 1.02rem; color: var(--muted); }
+.new-here h3 { color: var(--muted); font-size: 1rem; font-weight: 600; }
+
+/* ---- Front page: the Experimental sign on a card ---- */
+.gc-body > .badge { margin: 0 0 0.5rem; vertical-align: 0; }
+
+/* ---- Front page: other designers' games ---- */
+.others .others-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+.others .others-list li.other {
+  padding: 1.15rem 1.35rem 1.2rem;
+  border: 1px solid var(--rule); border-radius: 1.1rem;
+  background: var(--surface); box-shadow: var(--shadow);
+}
+.others li.other:last-child { border-bottom: 1px solid var(--rule); }
+.others li.other .kicker a { color: inherit; }
+.others li.other h3 { margin: 0 0 0.5rem; font: 650 1.2rem/1.3 var(--sans); }
+.others li.other h3 a { color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+.others li.other h3 a:hover { color: var(--link); }
+.others li.other h3 svg.i { width: 0.9em; height: 0.9em; color: var(--link); }
+.others li.other p { font-size: 1rem; }
+.others li.other p:last-of-type { margin-bottom: 0; }
+.others li.other .chips { margin-top: 0.9rem; }
+.chips .size { margin-left: 0.15rem; font-size: 0.78rem; color: var(--muted); }
+
+/* ---- Newsletter and feedback ---- */
+form.newsletter {
+  margin: 3rem 0 0; padding: 1.4rem 1.5rem 1.3rem;
+  border: 0; border-radius: 1.1rem;
+  background: var(--tint);
+  font-family: var(--sans); font-size: 0.95rem;
+}
+form.newsletter label { margin-bottom: 0.9rem; font-size: 1.02rem; font-weight: 500; line-height: 1.45; }
+.newsletter-row input {
+  padding: 0.65rem 0.9rem; border: 1px solid var(--rule); border-radius: 0.7rem;
+  background: var(--surface); font-family: var(--sans);
+}
+.newsletter-row input:focus { outline: 2px solid var(--link); outline-offset: 1px; border-color: transparent; }
+.newsletter-row button {
+  padding: 0.65rem 1.2rem; border-radius: 0.7rem; font-family: var(--sans); font-weight: 600;
+  color: #fff; background: var(--link);
+}
+@media (prefers-color-scheme: dark) { .newsletter-row button { color: #1d1c1a; } }
+form.newsletter small { margin-top: 0.75rem; font-size: 0.82rem; }
+.feedback { margin-top: 1.1rem; font-family: var(--sans); font-size: 0.9rem; }
+
+/* ---- The floating bars ---- */
+.jump-bar {
+  right: 1rem; bottom: 1rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-hover);
+  font-weight: 500;
+}
+.jump-bar a { padding: 0.6rem 1rem; transition: background 0.15s; }
+.jump-bar a:hover { background: var(--tint); }
+
+/* ---- A game's page: which player count ---- */
+.editions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.8rem;
+  margin: 2.5rem 0 0; padding: 0; border: 0;
+  font-family: var(--sans); font-size: 0.9rem; color: var(--muted);
+}
+.seg { display: inline-flex; padding: 0.2rem; border-radius: 999px; background: var(--tint); }
+.seg a { padding: 0.35rem 0.9rem; border-radius: 999px; font-weight: 600; text-decoration: none; }
+.seg a[aria-current] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.seg a:not([aria-current]):hover { color: var(--link-hover); }
+
+/* ---- Contents ---- */
+.toc h2 { margin: 0 0 0.75rem; font: 600 0.72rem/1.4 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.toc li::before { color: var(--muted); font: 500 0.85em var(--sans); top: 0.15em; }
+@media (max-width: 77.99rem) {
+  .toc { padding: 1.1rem 1.25rem 1rem; border: 1px solid var(--rule); border-radius: 1.1rem; background: var(--surface); box-shadow: var(--shadow); }
+  .toc li { margin-bottom: 0.15rem; }
+}
+@media (min-width: 78rem) {
+  .toc { font-family: var(--sans); font-size: 0.86rem; }
+  .toc li::before { top: 0; }
+  .toc a { color: var(--muted); }
+  .toc a:hover { color: var(--link); text-decoration: none; }
+  .toc-more a { color: var(--link); }
+}
+
+/* ---- End of a page: downloads and links as rows ---- */
+.rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.rows .row {
+  display: flex; align-items: center; gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--rule); border-radius: 0.9rem;
+  background: var(--surface); color: var(--fg); text-decoration: none;
+  font-family: var(--sans);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.rows .row:hover { color: var(--fg); text-decoration: none; box-shadow: var(--shadow-hover); border-color: transparent; }
+.rows .tag {
+  flex: none; min-width: 2.6rem; text-align: center;
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.3rem 0.45rem; border-radius: 0.5rem; background: var(--tint); color: var(--link);
+}
+.row-text { flex: 1; min-width: 0; }
+.row-text b { display: block; font-weight: 600; font-size: 0.98rem; line-height: 1.35; }
+.row-text small { display: block; font-size: 0.82rem; color: var(--muted); line-height: 1.4; }
+.rows .row > svg.i { color: var(--link); width: 1.1rem; height: 1.1rem; }
+#downloads, #links, .more-games { margin-top: 3.5rem; }
+#downloads + #links { margin-top: 2.5rem; }
+.learn-next { margin-top: 4rem; }
+.learn-next .doors { margin-bottom: 0; }
+.learn .try { border-radius: 1rem; border-color: var(--rule); border-style: dashed; padding: 0.9rem 1.1rem; }
+.learn details.check { border-radius: 0.9rem; padding: 0.75rem 1rem; background: var(--surface); box-shadow: var(--shadow); }
+
+/* ---- Front page on wide screens: one wide column with one left edge; prose keeps its measure ---- */
+@media (min-width: 62rem) {
+  body:has(> header.hero) { max-width: 60rem; padding-left: 2rem; padding-right: 2rem; }
+  .hero .intro, .about > p, .section-intro, form.newsletter, .feedback { max-width: 40rem; }
+  .others .others-list { display: block; columns: 2; column-gap: 1rem; }
+  .others .others-list li.other { break-inside: avoid; margin-bottom: 1rem; }
+}
+.others .chips li { padding: 0; border: 0; }
+.others li.other .kicker a { text-decoration: none; }
+.others li.other .kicker a:hover { text-decoration: underline; }
+
+
+/* ---- Front page: show games by player count or type (radio buttons, no JavaScript) ---- */
+.filter {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem;
+  margin: 2.5rem 0 1.25rem; padding: 0; border: 0; min-width: 0;
+  font-family: var(--sans);
+}
+.filter input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.filter label {
+  display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer;
+  padding: 0.38rem 0.6rem 0.38rem 0.9rem;
+  border: 1px solid var(--rule); border-radius: 999px; background: var(--surface);
+  font-size: 0.88rem; font-weight: 500; line-height: 1.3; color: var(--fg);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  user-select: none; -webkit-user-select: none;
+}
+.filter label:hover { border-color: var(--muted); }
+.filter .count {
+  min-width: 1.35rem; padding: 0.05rem 0.4rem; border-radius: 999px; text-align: center;
+  background: var(--tint); color: var(--link); font-size: 0.74rem; font-weight: 700;
+}
+.filter input:checked + label { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.filter input:checked + label .count { background: color-mix(in srgb, var(--bg) 20%, transparent); color: var(--bg); }
+.filter input:focus-visible + label { outline: 2px solid var(--link); outline-offset: 2px; }
+.filter-gap { width: 1px; height: 1.4rem; margin: 0 0.3rem; background: var(--rule); }
+@media (max-width: 34rem) { .filter-gap { display: none; } }
+@supports not selector(:has(a)) { .filter { display: none; } }
+.filter-title { margin: 3rem 0 0; font: 600 1rem/1.35 var(--sans); color: var(--muted); }
+.filter-title + .filter { margin-top: 0.9rem; }
+@supports not selector(:has(a)) { .filter-title { display: none; } }
+
+/* ---- Front page: the card's actions, the same on every card ---- */
+.acts { display: block; margin: 1.1rem 0 0; }
+.btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.btns.one { grid-template-columns: 1fr; }
+.btns .btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  min-height: 2.75rem; padding: 0.55rem 0.9rem; border-radius: 0.75rem;
+  font: 600 0.95rem/1.2 var(--sans); text-decoration: none; text-align: center;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.btns .btn svg.i { width: 1.1em; height: 1.1em; }
+.btns .btn-learn { background: var(--tint); border: 1px solid transparent; color: var(--link); }
+.btns .btn-learn:hover { background: var(--tint-strong); color: var(--link-hover); }
+.btns .btn-rules { background: var(--surface); border: 1px solid color-mix(in srgb, var(--link) 30%, var(--rule)); color: var(--link); }
+.btns .btn-rules:hover { border-color: var(--link); color: var(--link-hover); }
+.btns .btn:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.quiet-links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; margin: 0.75rem 0 0; font: 500 0.86rem/1.3 var(--sans); }
+.quiet-links a { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted); text-decoration: none; }
+.quiet-links a:hover { color: var(--link); }
+.quiet-links a svg.i { width: 1.05em; height: 1.05em; }
+.quiet-links a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 3px; }
+
+/* ---- Learning page: straight to the full rules ---- */
+.rules-doors { margin: 1.75rem 0 0; }
+.door.slim { padding: 0.75rem 1rem; gap: 0.8rem; }
+.door.slim .door-ico { width: 2.2rem; height: 2.2rem; border-radius: 0.65rem; }
+.door.slim .door-ico svg.i { width: 1.15rem; height: 1.15rem; }
+.door.slim b { font-size: 0.98rem; }
+.door.slim small { font-size: 0.82rem; }
+.rules-doors + .toc { margin-top: 1.5rem; }
+@media (min-width: 78rem) { .rules-doors + .toc { margin-top: 0; } }
+.door.split { cursor: default; }
+.door.split:hover { transform: none; box-shadow: var(--shadow); }
+.pills { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: flex-end; }
+.pills a {
+  padding: 0.35rem 0.8rem; border-radius: 999px; background: var(--tint);
+  font: 600 0.85rem/1.3 var(--sans); color: var(--link); text-decoration: none; white-space: nowrap;
+}
+.pills a:hover { background: var(--tint-strong); color: var(--link-hover); }
+.pills a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+@media (max-width: 34rem) {
+  .door.split { grid-template-columns: auto 1fr; }
+  .door.split .pills { grid-column: 1 / -1; justify-content: flex-start; }
+}
+.door.main.split:hover { background: var(--tint); box-shadow: none; }
+.door.main.split .pills a { background: var(--surface); }
+.door.main.split .pills a:hover { background: var(--bg); }
+
+/* ---- Printing: the rules and facts on paper, without the parts that only work on screen ---- */
+@media print {
+  .doors, .rules-doors, .files-in, .drops, .editions, .filter, .filter-title, .more-picks,
+  form.newsletter, .feedback, .more-games, #downloads, #links, .learn-next .doors, .acts { display: none !important; }
+  .toc, .game-card, .pick, .others li.other, .rows .row, .learn details.check {
+    box-shadow: none !important; background: none !important;
+  }
+  .toc { padding: 0; border: 0; border-radius: 0; break-inside: avoid; }
+  .toc a { color: inherit; }
+  .stats, .game-card, .pick, .others li.other { break-inside: avoid; }
+  .game-card, .pick, .others li.other { border-color: #bbb; }
+  .kicker { color: #555; }
+}
+.rules table:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; border-radius: 2px; }
